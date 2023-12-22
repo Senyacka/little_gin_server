@@ -15,16 +15,6 @@ import (
 // TODO Добавить редактирование информации о пользователе
 // TODO Добавить отправку и получение сообщений пользователю
 
-// Структура для хранения данных о пользователе
-// type User struct {
-// 	ID       	int    `json:"id"`
-// 	Username 	string `json:"username"`
-// 	Password 	string `json:"password"`
-//  Admin	 	bool   `json:"admin"`
-//  Description string `json:"description"`
-// }
-
-
 
 func main() {
 	router := gin.Default()
