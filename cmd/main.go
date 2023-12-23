@@ -6,37 +6,29 @@ import (
 	"os"
 
 	"github.com/gin-gonic/gin"
-	"github.com/sncka/little_gin_server/internal/db"
 )
-// TODO Добавить MySQL и Redis для хранения данных
-// TODO Добавить регистрацию и авторизацию
-// TODO Добавить логирование действий пользователей
-// TODO Добавить редактирование информации о сайте
-// TODO Добавить отправку формы и загрузку файлов
-// TODO Добавить редактирование информации о пользователе
-// TODO Добавить отправку и получение сообщений пользователю
 
 func main() {
 	router := gin.Default()
 
-	// Роутер для отображения главной страницы
+	// Роутер отображения главной страницы
 	router.GET("/", func(c *gin.Context) {
 		c.String(http.StatusOK, "Welcome!")
 	})
 
-	// Роутер для проверки работоспособности API
+	// Роутер проверки работоспособности API
 	router.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"message": "pong",
 		})
 	})
 
-	// Роутер для отображения информации о сайте
+	// Роутер отображения информации о сайте
 	router.GET("/about", func(c *gin.Context) {
 		c.String(http.StatusOK, "This is a simple Go web app.")
 	})
 
-	// Роутер для загрузки сайта sefus.ru
+	// Роутер загрузки сайта sefus.ru
 	router.GET("/gobook", func(c *gin.Context) {
 		resp, err := http.Get("https://sefus.ru/little-go-book/")
 
@@ -51,7 +43,7 @@ func main() {
 
 	})
 
-	// Роутер для стрима видео из папки videos
+	// Роутер стрима видео из папки videos
 	router.GET("/stream/:filename", func(c *gin.Context) {
 		filename := c.Param("filename")
 		file, err := os.Open("../videos/" + filename + ".mp4") // Используйте расширение .mp4 для видео в формате MP4
@@ -66,7 +58,7 @@ func main() {
 		io.CopyBuffer(c.Writer, file, buffer)
 	})
 
-	// Роутер для вывода изображения из папки images
+	// Роутер вывода изображения из папки images
 	router.GET("/image/:filename", func(c *gin.Context) {
 		filename := c.Param("filename")
 		file, err := os.Open("../images/" + filename + ".jpg") // Используйте расширение .jpg для изображений в формате JPEG
